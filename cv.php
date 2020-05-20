@@ -13,10 +13,6 @@ $projects = '';
 $more_information = '';
 $errors = [];
 
-
-
-
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $name = mysqli_real_escape_string($mysqli,$_POST['name']);
     $education = mysqli_real_escape_string($mysqli,$_POST['education']);
@@ -26,10 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $projects = mysqli_real_escape_string($mysqli,$_POST['projects']);
     $selector  = $_POST['selector'];
     $more_information = mysqli_real_escape_string($mysqli,$_POST['more_information']);
-
    
-
-
     if(empty($name)){array_push($errors, "Name is required");}
     if(empty($education)){array_push($errors, "Education is required");}
     if(empty($contact_information)){array_push($errors, "Contact Information is required");}
@@ -39,19 +32,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($selector)){array_push($errors, "Must select one option");}
     if(empty($more_information)){array_push($errors, " More information is required");}
 
-    
-    
-
     if(!count($errors)){
         if(isset($_SESSION['logged_in'])){
             $a = $_SESSION['user_name'];
-            echo $a;
-            $query =  "insert into information(name, education, contact_information, skills, 
+
+                $query = $mysqli->prepare("insert into information(name, education, contact_information, skills, 
                     work, projects, selector, more_information, created_by)
-                                    values ('$name', '$education', '$contact_information', '$skills', 
-                                    '$work', '$projects', $selector, '$more_information', '$a')";
+                                    values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    $query->bind_param('sssssssss', $name, $education, $contact_information,
+                                    $skills, $work, $projects, $selector, $more_information, $a);
     
-                $mysqli->query($query);
+                $query->execute();
+                $query->close();
                 header('location: Web_devel.php');
         }
     }   
@@ -61,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
     <?php if(isset($_SESSION['logged_in'])){?>
     <?php include 'template/errors.php' ?>
-    <div id="" class="pt-2">
+    <div id="" class="pt-4">
         <h4 class="alert alert-danger " role="alert">  All fields are required, Please fill it </h4> 
     <form action="" method = "post" class= "pl-4 pr-4">
         <div class="card">

@@ -37,8 +37,8 @@
 
     <div class="container ">
         <div class="footer panel-default bg-light ">
-            <p class="footer_info">@2019 ᑕOᑭYᖇIGᕼT:
-            <a href="home.php" class="text-muted">ᑕᐯᔕ.ᑕOᗰ</a></p>
+            <p class="footer_info">@2020 ᑕOᑭYᖇIGᕼT:
+            <a href="home.php" class="text-muted">CVs.com</a></p>
            
         </div>
     </div>

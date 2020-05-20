@@ -3,7 +3,7 @@
 $connection = [
     'host'=> 'localhost',
     'user' => 'root',
-    'database' => 'cv_web'
+    'database' => 'web_onlinecv'
 ];
 
 $mysqli = mysqli_connect($connection['host'],

@@ -5,7 +5,9 @@ session_start();
 require_once __DIR__.'/../config/app.php';
 require_once 'config/database.php';
 
-
+if(isset($_SESSION['logged_in'])){
+    $_SESSION['user_name'];
+}
 
 ?>
 
@@ -27,6 +29,10 @@ require_once 'config/database.php';
             <ul class="navbar-nav">
                 <li class="nav-item active">
                  <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active">
+                 <a class="nav-link" href="#about">About <span class="sr-only"></span></a>
                 </li>
                
                 <li class="nav-item dropdown">

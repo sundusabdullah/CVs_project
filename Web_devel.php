@@ -5,7 +5,7 @@ require_once 'config/app.php';
 
 
 
-    $quariy = ("select * from information where selector ='2'");
+    $quariy = ("select * from information where selector = 2");
     $result = mysqli_query($mysqli, $quariy) or die("database error:". mysqli_error($mysqli));
      
     
@@ -17,13 +17,16 @@ require_once 'config/app.php';
                     ?>
         <div class="col-md-4">
             <div class="card">
-                <h4 class="card-header">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <h4 class="card-title"><?php echo $data['name'];?></h4>
+                    </h4>
+                    <div class="card-text">
+                        <?php echo $data['more_information'];?>
+                    </div><br>
                     <a href="show.php?id=<?=$data['id'];?>" class="btn btn-primary" style="border-radius: 25px;  background-color:#969FA4; border: none; width: 200px;">Show all information</a>
-                </h4>
-                <div class="card-body"><?php echo $data['more_information'];?></div>
-                <div class="card-footer"><?php echo $data['name'];?></div>
+                </div>
             </div>
-
         </div>
         <?php } ?>
     </div>

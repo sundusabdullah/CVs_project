@@ -46,12 +46,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if(!count($errors)){
 
-        $query = "update information set name='$name',education='$education',
-        contact_information='$contact_information',skills='$skills',work='$work',
-        projects='$projects',selector='$selector',more_information='$more_information',
-        created_by='$a' where id = $id";
-        $mysqli->query($query);
+        // $query = "update information set name='$name',education='$education',
+        // contact_information='$contact_information',skills='$skills',work='$work',
+        // projects='$projects',selector='$selector',more_information='$more_information',
+        // created_by='$a' where id = $id";
+        // $mysqli->query($query);
         //echo $query;
+
+        $query = $mysqli->prepare("update information set name=?, education=?,
+        contact_information=?, skills=?, work=?,
+        projects=?, selector=?, more_information=?, created_by=? where id=?");
+        $query->bind_param('ssssssssss', $name, $education, $contact_information, $skills, $work,
+        $projects, $selector, $more_information, $id);
+        $query->execute();
+
         
         if($query){
             //header('location: Web_devel.php');

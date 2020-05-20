@@ -12,17 +12,13 @@ if(isset($_SESSION['logged_in'])){
 $errors = [];
 $email = '';
 
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email=  mysqli_real_escape_string($mysqli, $_POST['email']);
     $password=  mysqli_real_escape_string($mysqli, $_POST['password']);
 
-
     if(empty($email)){array_push($errors, "Email is required");}
     if(empty($password)){array_push($errors, "password is required");}
 
-
-   
     if(!count($errors)){
         $userExists = $mysqli->query("select id, user_email, password, user_name from users where user_email='$email' limit 1");
 
@@ -50,25 +46,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
 <div id="login" class="pt-4">
-    <h4 style="text-align:center; font-size:40px;">ᗯEᒪᑕOᗰE TO ᑕᐯᔕ ᗯEᗷᔕITE</h4>
+    <h4 style="text-align:center; font-size:40px;">͏welcome to CVs Website </h4>
     <hr>
 
     <?php include 'template/errors.php' ?>
     <form action="" method = "post" class= "pl-4 pr-4">
-
         <div class="form-group">
             <label for="email"> Your email: </label>
             <input type="email" name= "email" class="form-control" placeholder="Your email" id="email" value="<?php echo $email ?>">
         </div>
-        
-
         <div class="form-group">
             <label for="password"> Your password: </label>
             <input type="password" name= "password" class="form-control" placeholder="Your password" id="password">
         </div>
-
-       
-
         <div class="form-group">
             <button class="btn btn-success" style="border-radius: 25px; border: none; width: 100px; background-color:#969FA4;"> Login </button>
             <a href="password_reset.php" class="pl-2"> Forgot your password </a>
@@ -76,6 +66,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </form>
 </div>
 
-
 <div class="container pt-5"></div>
-<?php include 'template/footer.php' ?>
+<?php include 'template/footer.php'?>
