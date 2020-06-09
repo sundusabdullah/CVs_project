@@ -8,7 +8,6 @@ require_once 'config/app.php';
 
 
 //Select quary 
-
 if(isset($_SESSION['logged_in'])){
 
     $a = $_SESSION['user_name'];
@@ -50,7 +49,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     where user_name = '$name'";
 
         $mysqli->query($query);
-        print_r($query);
 
         if($query){
             echo "Done";
